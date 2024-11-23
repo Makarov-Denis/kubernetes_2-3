@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-https
+  namespace: kubdz2-3
+spec:
+  rules:
+    - host: test.local
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: service-https
+                port:
+                  number: 80
+
+  tls:
+    - hosts:
+      - test.local
+      secretName: secret-tls
